@@ -549,6 +549,13 @@ end
 ```
 {: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
+#### More examples of graded code blocks
+
+The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.repl-test` to find the relevant examples):
+
+- [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
+- [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
+
 ### Runnable HTML (repl)
 
 An HTML runnable (a.k.a. `.repl`) question type allows the user to modify and execute HTML code.
