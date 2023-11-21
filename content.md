@@ -213,17 +213,9 @@ This aside is next to a `ul`. How does it look?
 
 1. ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
 
-  ```ruby
-  class Person
-    attr_accessor :first_name, :last_name
-  end
-  ```
-
-Outside list.
-
 ```ruby
 class Person
-	attr_accessor :first_name, :last_name
+  attr_accessor :first_name, :last_name
 end
 ```
 </aside>
@@ -257,9 +249,56 @@ Adding those `>` symbols at the beginning of the quoted lines produces:
 
 We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
 
-### Line 
+### Codeblock line and column highlighting
 
-## Quiz questions
+You add the highlight options after the language tag in a codeblock within brackets.
+
+- You can highlight individual lines: `ruby{1}`
+- You can highlight multiple lines: `ruby{1,2,4,5}`
+- You can highlight a range of lines: `ruby{1-3}`
+- You can highlight individual columns: `ruby{1:(3)}`
+- You can highlight multiple columns: `ruby{1:(3,4,5)}`
+- You can highlight a range of columns: `ruby{1:(3-6)}`
+
+Any combination should work.
+
+    ```ruby{1:(1-6),3:(9-13)}
+    tokens = ["hello", "world", "!"]
+    tokens.each do |token|
+      print token
+      print " " if token.count("a-zA-Z") > 0
+    end
+    ```
+
+Produces:
+
+```ruby{1:(1-6),3:(9-13)}
+tokens = ["hello", "world", "!"]
+tokens.each do |token|
+  print token
+  print " " if token.count("a-zA-Z") > 0
+end
+```
+
+Highlighting also works with HTML and ERB codeblocks.
+
+    ```erb{1:(1-3)}
+    <% newsfeed_photos.each do |the_photo| %>
+      <div class="card">
+    ```
+
+Produces:
+
+```erb{1:(1-3)}
+<% newsfeed_photos.each do |the_photo| %>
+  <div class="card">
+```
+
+### Quiz questions
+
+We have a number of interactive quiz question types.
+
+#### choose_all
 
 - Example of choose_all. First bullet is the prompt
 - First option (incorrect)
@@ -274,6 +313,8 @@ We have a number of markdown features specific to Learn that are important for a
     - This is not correct because of xyz reason
 {: .choose_all #zebra points="20" answer="[2, 3]" }
 
+#### choose_best
+
 - Example of choose_one. First bullet is the prompt
 - First option (incorrect)
     - This is not correct because of xyz reason
@@ -287,7 +328,7 @@ We have a number of markdown features specific to Learn that are important for a
     - This is not correct because of xyz reason
 {: .choose_best #giraffe points="30" answer="3" }
 
-### Free text (correct: create)
+#### free_text
 
 - Which action will be triggered when the user visits `/posts/new`?
 - create
@@ -296,14 +337,22 @@ We have a number of markdown features specific to Learn that are important for a
     - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
 {: .free_text #elephant points="30" answer="2" }
 
-### No right answer
+#### No right answer (broken)
 
 - Is there a pain point in your life that you might be able to solve with a small CRUD app?
 - any
     - Okay! I have a note in my phone's Notes app dedicated to collecting pain points/app ideas. I recommend that you do something like that, too.
 {: .broken #lion points="30" }
 
-## LTI iframe
+### Runnable and graded codeblocks
+
+#### Runnable
+
+
+#### Graded (with tests)
+
+
+### LTI iframe
 
 LTI{}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[hyena]{400}
 
@@ -313,6 +362,12 @@ LTI{}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[hye
 - Secret: ...
 {: .lti #elephant title="TP Example" points="30" answer="2" }
 
-## LTI button
+#### LTI button
 
 LTI{Load assignment}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[baboon]{400}
+
+---
+
+Reach out if you have any questions!
+
+---
