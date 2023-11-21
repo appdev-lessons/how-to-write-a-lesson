@@ -585,12 +585,23 @@ An LTI launch button can also be inserted into a lesson, allowing connections to
 LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
 ```
 
-### LTI button
+which renders as:
 
-LTI{Load assignment}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[baboon]{400}
+LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
 
----
+This line of markdown is made up of:
 
-Reach out if you have any questions!
+- `LTI`
+  - The line must start with this to render the launch button.
+- `{Load MSM Queries assignment}`
+  - The copy shown on the button.
+- `(https://grades.firstdraft.com/launch)`
+  - The launch URL, which will need to be configured on the first click of the button by the author.
+- `[test]{secret}`
+  - The consumer (`test`) and secret (`secret`) key provided by the tool.
+- `(10)`
+  - The number of points the project is worth within the current lesson.
+- `[MSM Queries Project]`
+  - The name of the project displayed to the user in the progress table.
 
 ---
