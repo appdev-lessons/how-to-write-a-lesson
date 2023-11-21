@@ -528,7 +528,7 @@ Here's an example,
 
 Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
 
-It is advisable to give the test a descriptive `title` taken from the `title` + `describe` + `it` lines; here: `First graded code block should print 'Hello, world!'`.
+It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded code block should print 'Hello, world!'"`.
 
 Note the key attribute of the `repl-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
 
