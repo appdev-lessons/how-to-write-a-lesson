@@ -249,7 +249,7 @@ Adding those `>` symbols at the beginning of the quoted lines produces:
 
 We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
 
-### Codeblock line and column highlighting
+## Codeblock line and column highlighting
 
 You add the highlight options after the language tag in a codeblock within brackets.
 
@@ -294,11 +294,57 @@ Produces:
   <div class="card">
 ```
 
-### Quiz questions
+## Quiz questions
 
-We have a number of interactive quiz question types.
+A quiz question is built like so:
 
-#### choose_all
+```
+- The question:
+- First option.
+  - Correct! (Copy to show when first option is selected.)
+- Second option.
+  - Not quite. (Copy to show when second option is selected.)
+- Third option.
+  - Not quite. (Copy to show when third option is selected.)
+{: .question_type #unique_identifier title="Some title" points="1" answer="1" }
+```
+
+The options contained in the `{: }` tags on a new line directly below the question options are:
+
+- `.question_type`
+  - An HTML `class`. One of `.choose_all`, `.choose_best`, `.free_text`, or `.free_text_number`; details for each in the sections below
+- `#unique_identifier`
+  - An HTML `id`. Used to identify the question in the database. 
+  - Each ID must be unique within a lesson. Any questions with the same ID in the same lesson will be treated as the same question. The last question with that ID will be saved in the database.
+- `title`
+  - Used by the user to identify the question in the progress table. 
+  - It is not used to identify the question in the database. It does not have to be unique.
+  - For runnable code blocks, this title is also used as a header to the code editor displayed to the user.
+- `points`
+  - Number of points the question is worth.
+- `answer`
+  - Indicates the index of the correct answer in the list of options (indexing begins at 1 with the first option.
+
+### choose_all
+
+A choose all question type is a multiple choice question where the user can select multiple answers. The user can select the answer by clicking on the checkbox next to the answer.
+
+To add a choose all question to your lesson, use the following markdown syntax,
+
+```
+- Example of choose_all. First bullet is the prompt
+- First option (incorrect)
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
+- Second option (correct)
+  - This is correct because of xyz reason
+  - Also correct because of abc reason
+- Third option (correct)
+  - That's right! Because of xyz reason
+{: .choose_all #zebra points="2" answer="[2, 3]" }
+```
+
+The user will receive partial points for each correct answer they select. The user will receive all points only after they select all the correct answers. Partial points are awarded by dividing the total points by the number of correct answers. For example, if the question has 3 points and there are 3 correct answers, then the user will receive 1 point for each correct answer.
 
 - Example of choose_all. First bullet is the prompt
 - First option (incorrect)
@@ -311,43 +357,233 @@ We have a number of interactive quiz question types.
     - That's right! Because of xyz reason
 - Fourth option (incorrect)
     - This is not correct because of xyz reason
-{: .choose_all #zebra points="20" answer="[2, 3]" }
+{: .choose_all #zebra title="The choose_all question type" points="2" answer="[2, 3]" }
 
-#### choose_best
+### choose_best
 
-- Example of choose_one. First bullet is the prompt
+A choose best question type is a multiple choice question where the user can select only one answer. The user can select the answer by clicking on the radio button next to the answer.
+
+To add a choose best question to your lesson, use the following markdown syntax,
+
+```
+- Example of choose_best. First bullet is the prompt
 - First option (incorrect)
-    - This is not correct because of xyz reason
+  - This is not correct because of xyz reason
 - Second option (incorrect)
-    - This is not correct because of xyz reason
-    - Also not correct because of abc reason
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
 - Third option (correct)
-    - That's right! Because of xyz reason
-    - Also correct because of abc reason
-- Fourth option (incorrect)
-    - This is not correct because of xyz reason
-{: .choose_best #giraffe points="30" answer="3" }
+  - That's right! Because of xyz reason
+  - Also correct because of abc reason
+{: .choose_best #giraffe title="The choose_best question type" points="1" answer="3" }
+```
 
-#### free_text
+Once the user selects the one correct answer, they will receive all the points.
+
+- Example of choose_best. First bullet is the prompt
+- First option (incorrect)
+  - This is not correct because of xyz reason
+- Second option (incorrect)
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
+- Third option (correct)
+  - That's right! Because of xyz reason
+  - Also correct because of abc reason
+{: .choose_best #giraffe title="The choose_best question type" points="1" answer="3" }
+
+**Special Cases for choose_all and choose_best:**
+
+- "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
+
+  `{: .choose_all #zebra title="The choose_all question type" points="2" answer="any" }`
+
+  This will mark all answers in the given options as correct.
+
+- "optional answer": A `choose_all` or `choose_best` question must have a correct answer selected. It is not optional. If you leave out the answer attribute then any answer a user selects will be marked as incorrect.
+
+### free_text
+
+A free text question type allows the respondent to enter any text they wish.
+
+To add a free text question to your lesson, use the following markdown syntax,
+
+```
+- Which action will be triggered when the user visits `/posts/new`?
+- create
+  - The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
+- new
+  - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
+{: .free_text #elephant title="The free_text question type" points="1" answer="2" }
+```
+
+A user can type in the exact or a partial match for the correct answer. For example, if the correct answer is `Ruby`, the user can type in `Ruby`, `R`, `r`, etc. as the answer checking is done with a lenient regex.
 
 - Which action will be triggered when the user visits `/posts/new`?
 - create
-    - The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
+  - Not quite. The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
 - new
-    - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
-{: .free_text #elephant points="30" answer="2" }
+  - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
+{: .free_text #elephant title="The free_text question type" points="1" answer="2" }
 
-### Runnable and graded codeblocks
+### free_text_number
 
-#### Runnable
+A free text number question type allows the respondent to enter any number or decimal they wish. This is usually used to collect user completion times.
+
+To add a free text number question to your lesson, use the following markdown syntax,
+
+```
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+```
+
+If options are given for the correct answer, a user can type in only the exact match of the answer. For example, if the answer is 5, the user can type in 5, 5.0, 5.00, 5.000, etc. but not 5.1, 5.01, 5.001, etc.
+
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+
+**Special Cases for free_text and free_text_number:**
+
+- "fallback option": If you want to show a custom message when a user enters an incorrect answer, you can use the `any` option. For example,
+
+  ```
+  - What programming language are we learning today?
+  - Ruby
+    - Correct.
+  - any
+    - Not quite right. Re-read the previous sections and try again.
+  {: .free_text #what_language title="Language we are learning" points="1" answer="[1]" }
+  ```
+
+- "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
+
+  `{: .free_text #elephant title="The free_text question type" points="1" answer="any" }`
+
+  This will mark all answers in the given options as correct.
+
+- "optional answer": If you want to accept any answer as the correct one, you can skip the answer attribute. For example,
+
+  `{: .free_text #elephant title="The free_text question type" points="1" }`
+
+## Runnable and graded codeblocks
+
+An author can insert runnable or graded codeblocks into the lesson.
+
+### Runnable Ruby (repl)
+
+A Ruby runnable (a.k.a. `.repl`) question type allows the user to modify and execute Ruby code.
+
+To add a Ruby question to your lesson, use the following markdown syntax,
 
 
-#### Graded (with tests)
+    ```ruby
+    x = "Hello"
+    y = "World"
+    z = x + y
 
+    pp z
+    ```
+    {: .repl #bear title="Runnable Ruby" points="1"}
 
-### LTI iframe
+After the user executes the code at least once, they are awarded all the points.
 
-LTI{}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[hyena]{400}
+```ruby
+x = "Hello"
+y = "World"
+z = x + y
+
+pp z
+```
+{: .repl #bear title="Runnable Ruby" points="1"}
+
+**Additional attributes available on repl type questions:**
+
+- `readonly_lines`
+  - Some lines can be marked as "readonly". The user will not be able to modify these lines. This attribute accepts an array of line numbers.
+  - Example: `readonly_lines="[10, 16, 17]"`
+- `setup_code`
+  - A single line or a range of lines can be marked as setup code. These lines will not be shown to the user. The line numbers shown on the left margin of the code editor will not include those lines marked as `setup_code`.
+  - Example: `setup_code="1"`
+  - Example: `setup_code="1-4"`
+
+### Graded Ruby (repl + repl-test)
+
+Each Ruby question can have multiple tests. When a student clicks on the "Run" button for a test, the test executes, and an output and summary are displayed to the student. The output represents the result of each individual test, indicating whether it passed or failed. The summary provides an overview of the test results, including the number of tests that passed.
+
+Here's an example,
+
+    ```ruby
+    def add(a, b)
+      a + b
+    end
+    puts add(2,3)
+    ```
+    {: .repl #addition title="Adding" }
+
+    ```ruby
+    describe "addition" do
+      context "adding 2 and 3" do
+        it "should return 5" do
+          expect(add(2, 3)).to eq(5)
+        end
+      end
+    end
+    ```
+    {: .repl-test #addition-test-1 points="1" title="Addition Test 1" for="addition"}
+
+Notice that the question has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points.
+
+```ruby
+def add(a, b)
+  a + b
+end
+puts add(2,3)
+```
+{: .repl #addition title="Adding" }
+
+```ruby
+describe "addition" do
+  context "adding 2 and 3" do
+    it "should return 5" do
+      expect(add(2, 3)).to eq(5)
+    end
+  end
+end
+```
+{: .repl-test #addition-test-1 points="1" title="Addition Test 1" for="addition"}
+
+Note the key attribute of the `repl-test`: `for="addition"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#addition` / `for="addition"`.
+
+Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
+
+### Runnable HTML (repl)
+
+An HTML runnable (a.k.a. `.repl`) question type allows the user to modify and execute HTML code.
+
+To add an HTML question to your lesson, just specify the code type in the beginning of the code block,
+
+    ```html
+    <h1>Hi</h1>
+
+    <p>there</p>
+    ```
+    {: .repl #salmon title="Runnable HTML" points="1"}
+
+```html
+<h1>Hi</h1>
+
+<p>there</p>
+```
+{: .repl #salmon title="Runnable HTML" points="1"}
+
+We do not yet support grading via connected tests on runnable HTML code blocks.
+
+## LTI button
+
+An LTI launch button can also be inserted into a lesson, allowing connections to `rake grade` projects:
+
+```
+LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
+```
 
 - Launch URL: https://lti-provider-example.herokuapp.com/lti_tool (required, no default)
 - Button: Load TP Example in new tab (optional, default: "Load resource in new tab", if blank then assume iframe),
@@ -355,7 +591,7 @@ LTI{}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[hye
 - Secret: ...
 {: .lti #elephant title="TP Example" points="30" answer="2" }
 
-#### LTI button
+### LTI button
 
 LTI{Load assignment}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[baboon]{400}
 
