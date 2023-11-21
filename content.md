@@ -160,7 +160,6 @@ On any element, you can:
     `some code`
     </div>
 
-^
 
 ### Lists
 
@@ -191,11 +190,6 @@ In order to be sized properly, content of list items needs to be within a contai
     attr_accessor :first_name, :last_name
   end
   ```
-- After the last item, leave a blank line and then an End Of Block (EOB) marker `^`.
-
-^
-
-**TODO** Modify the markdown parser to make adding children within li automatic.
 
 ### How to write asides
 
@@ -205,7 +199,6 @@ In order to be sized properly, content of list items needs to be within a contai
 
 - Use traditional [markdown footnotes](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) for things that are not relevant to see in the flow, e.g. [citing sources](https://www.scribbr.com/category/citing-sources/), etc.
 
-^
 
 <aside markdown="1">
 This aside is next to a `ul`. How does it look?
