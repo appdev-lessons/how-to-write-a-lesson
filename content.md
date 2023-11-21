@@ -12,6 +12,8 @@ The [appdev-lessons GitHub organization](https://github.com/appdev-lessons) cont
 
 The following details the lesson repository files and how to use each. **Do not rename these files**:
 
+<div class="bleed-full" markdown="1">
+
 | File | Purpose | Usage  | 
 |-----------------|-------------|---------------|
 | `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![](local-path-to-assets/my-image.png)` |
@@ -21,9 +23,8 @@ The following details the lesson repository files and how to use each. **Do not 
 | `README.md` | General repo information  | Replace the first heading with the name of the repo and replace the URL with that of the learn lesson after connecting the lesson with Learn |
 |-----------------+--------------+-----------------|
 | `content.md` | Contains the lesson "title" and "content" | The file should begin with a level one (`<h1>`) markdown heading `# My Title`, which will be parsed to form the lesson title on Learn. Everything after this first `#` line will be parsed into the lesson content. All `assets/` will be rendered from their raw GitHub URL when opened on Learn: `![](https://raw.githubusercontent.com/appdev-lessons/REPO/BRANCH/assets/example-image.png)` |
-{: .bleed-full }
 
-### What happens when you connect a lesson via GitHub
+</div>
 
 When a URL like `https://github.com/appdev-lessons/how-to-write-a-lesson` is input on Learn in the "Connect GitHub" tab of a lesson, the `content.md` file on the `main` branch is parsed and the lesson receives a Learn URL that contains a unique ID followed by the repo name, which provides a handy reference in the browser for what the lesson contains and the GitHub repo the raw lesson can be found at, e.g. 
 
@@ -31,11 +32,11 @@ When a URL like `https://github.com/appdev-lessons/how-to-write-a-lesson` is inp
 
 We recommend adding that URL to the `README.md` file in the repo to keep track of the connection.
 
-#### Updates
+### Updates
 
 Once the Learn lesson is connected with a GitHub repo, any updates made to the lesson repo `content.md` file at e.g. `https://github.com/appdev-lessons/how-to-write-a-lesson` via commits and pushes will cause the lesson on Learn to **automatically update** with those changes.
 
-#### Branches and pull requests
+### Branches and pull requests
 
 Any branch made on a Learn-connected GitHub repo will automatically generate a new, independent lesson on Learn. For example, for this lesson, this URL was generated:
 
@@ -57,15 +58,20 @@ When working on a lesson, a pull request can be opened for the new branch and th
 
 When the lesson is eventually merged to `main` the `authors/lessons` primary lesson will automatically update with the changes and the author can optionally delete the lesson that was automatically generated from the feature branch.
 
-#### In-line editing of the lesson on Learn
+### In-line editing of the lesson on Learn
 
 Currently, when a lesson is connected to a GitHub repo, the author loses the ability to edit the lesson in-line with the markdown GUI on Learn. We are working to re-implement this feature for quick edits on e.g. typos. Stay tuned.
 
 ## Write the lesson
 
-### Markdown basics
+The next sections cover how to write a lesson via the in-line editor or in the `content.md` file for a GitHub-connected lesson. First, there are some [markdown basics](#markdown-basics){: target="_self" }, then the author should become familiar with our [Learn-flavored markdown extensions](#learn-flavored-markdown-extensions){: target="_self" }, which are important for writing interactive lessons with quizzes and projects.
 
-Gitlab has good guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
+## Markdown basics
+
+These sections contain a basic overview of the markdown syntax for writing lessons on Learn. 
+
+- Gitlab has good, complete guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); 
+- and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
 
 ### Links open in a new tab
 
@@ -254,7 +260,11 @@ Adding those `>` symbols at the beginning of the quoted lines produces:
 >
 > — W. Somerset Maugham
 
-# Examples of markdown extensions
+## Learn-flavored markdown extensions
+
+We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
+
+### Line 
 
 ## Quiz questions
 
