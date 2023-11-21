@@ -585,12 +585,6 @@ An LTI launch button can also be inserted into a lesson, allowing connections to
 LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
 ```
 
-- Launch URL: https://lti-provider-example.herokuapp.com/lti_tool (required, no default)
-- Button: Load TP Example in new tab (optional, default: "Load resource in new tab", if blank then assume iframe),
-- Key: ...
-- Secret: ...
-{: .lti #elephant title="TP Example" points="30" answer="2" }
-
 ### LTI button
 
 LTI{Load assignment}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[baboon]{400}
