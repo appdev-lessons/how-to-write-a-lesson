@@ -337,13 +337,6 @@ We have a number of interactive quiz question types.
     - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
 {: .free_text #elephant points="30" answer="2" }
 
-#### No right answer (broken)
-
-- Is there a pain point in your life that you might be able to solve with a small CRUD app?
-- any
-    - Okay! I have a note in my phone's Notes app dedicated to collecting pain points/app ideas. I recommend that you do something like that, too.
-{: .broken #lion points="30" }
-
 ### Runnable and graded codeblocks
 
 #### Runnable
