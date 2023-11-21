@@ -512,48 +512,42 @@ Each Ruby question can have multiple tests. When a student clicks on the "Run" b
 Here's an example,
 
     ```ruby
-    def add(a, b)
-      a + b
-    end
-    puts add(2,3)
+    pp "change me :)"
     ```
-    {: .repl #addition title="Adding" }
+    {: .repl #graded_code_block title="First graded code block"}
 
     ```ruby
-    describe "addition" do
-      context "adding 2 and 3" do
-        it "should return 5" do
-          expect(add(2, 3)).to eq(5)
-        end
+    describe "First graded code block" do
+      it "should print 'Hello, world!'" do
+        path = "/tmp/code.rb"
+        expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
       end
     end
     ```
-    {: .repl-test #addition-test-1 points="1" title="Addition Test 1" for="addition"}
+    {: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
-Notice that the question has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points.
+Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
+
+It is advisable to give the test a descriptive `title` taken from the `title` + `describe` + `it` lines; here: `First graded code block should print 'Hello, world!'`.
+
+Note the key attribute of the `repl-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
+
+Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
 
 ```ruby
-def add(a, b)
-  a + b
-end
-puts add(2,3)
+pp "change me :)"
 ```
-{: .repl #addition title="Adding" }
+{: .repl #graded_code_block title="First graded code block"}
 
 ```ruby
-describe "addition" do
-  context "adding 2 and 3" do
-    it "should return 5" do
-      expect(add(2, 3)).to eq(5)
-    end
+describe "First graded code block" do
+  it "should print 'Hello, world!'" do
+    path = "/tmp/code.rb"
+    expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
   end
 end
 ```
-{: .repl-test #addition-test-1 points="1" title="Addition Test 1" for="addition"}
-
-Note the key attribute of the `repl-test`: `for="addition"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#addition` / `for="addition"`.
-
-Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
+{: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
 ### Runnable HTML (repl)
 
