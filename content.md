@@ -1,67 +1,170 @@
 # How to write a lesson in learn.firstdraft.com
 
-### Markdown basics
+## Create the lesson
 
-Gitlab has good guides to Markdown/Kramdown:
+Sign in and visit the author lesson index, [learn.firstdraft.com/authors/lessons](https://learn.firstdraft.com/authors/lessons), and click "New lesson". You can either fill in a "title" and "content" directly in the markdown GUI interface, or "Connect GitHub" to add the URL of a lesson on GitHub in our pre-defined format, which is detailed below.
 
-- [Markdown Kramdown Tips & Tricks](https://about.gitlab.com/blog/2016/07/19/markdown-kramdown-tips-and-tricks/)
-- [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/)
+### Connect a lesson via GitHub
+
+The [appdev-lessons GitHub organization](https://github.com/appdev-lessons) contains all GitHub-connected lessons on Learn. A template lesson (`appdev-lessons/learn-lesson-template`) is pinned in that repository, which can be used to generate a new lesson. The new lesson "owner" _must_ be the `appdev-lessons` organization:
+
+[Create a new repository from the appdev-lessons/learn-lesson-template repo](https://github.com/new?template_name=learn-lesson-template&template_owner=appdev-lessons)
+
+The following details the lesson repository files and how to use each. **Do not rename these files**:
+
+<div class="bleed-full">
+
+| File | Purpose | Usage  | 
+|-----------------|-------------|---------------|
+| `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![](local-path-to-assets/my-image.png)` |
+|-----------------+--------------+-----------------|
+| `.gitignore` | Ignore any local files in the folder (i.e. do not commit these to the repo) | The template ignores a few common files that should not be included in the commit history. More can be added if required. |
+|-----------------+--------------+-----------------|
+| `README.md` | General repo information  | Replace the first heading with the name of the repo and replace the URL with that of the learn lesson after connecting the lesson with Learn |
+|-----------------+--------------+-----------------|
+| `content.md` | Contains the lesson "title" and "content" | The file should begin with a level one (`<h1>`) markdown heading `# My Title`, which will be parsed to form the lesson title on Learn. Everything after this first `#` line will be parsed into the lesson content. All `assets/` will be rendered from their raw GitHub URL when opened on Learn: `![](https://raw.githubusercontent.com/appdev-lessons/REPO/BRANCH/assets/example-image.png)` |
+
+</div>
+
+When a URL like `https://github.com/appdev-lessons/how-to-write-a-lesson` is input on Learn in the "Connect GitHub" tab of a lesson, the `content.md` file on the `main` branch is parsed and the lesson receives a Learn URL that contains a unique ID followed by the repo name, which provides a handy reference in the browser for what the lesson contains and the GitHub repo the raw lesson can be found at, e.g. 
+
+[learn.firstdraft.com/lessons/3-**how-to-write-a-lesson**](https://learn.firstdraft.com/lessons/3-how-to-write-a-lesson)
+
+We recommend adding that URL to the `README.md` file in the repo to keep track of the connection.
+
+### Updates
+
+Once the Learn lesson is connected with a GitHub repo, any updates made to the lesson repo `content.md` file at e.g. `https://github.com/appdev-lessons/how-to-write-a-lesson` via commits and pushes will cause the lesson on Learn to **automatically update** with those changes.
+
+### Branches and pull requests
+
+Any branch made on a Learn-connected GitHub repo will automatically generate a new, independent lesson on Learn. For example, for this lesson, this URL was generated:
+
+[https://learn.firstdraft.com/lessons/246-how-to-write-a-lesson](https://learn.firstdraft.com/lessons/246-how-to-write-a-lesson)
+
+during a re-write on this branch:
+
+[https://github.com/appdev-lessons/how-to-write-a-lesson/tree/bp-rewrite](https://github.com/appdev-lessons/how-to-write-a-lesson/tree/bp-rewrite)
+
+This new lesson can be used to view changes to the rendered lesson as edits are made to the `content.md` file. Access to lesson branches is not available from the `authors/lessons` lessons index on Learn; rather, the branch can be found by navigating to the `main` lesson on the index page, and then finding the UI button for "Other branches", which brings the author to a `/branches` page e.g.
+
+[https://learn.firstdraft.com/lessons/3-how-to-write-a-lesson/branches](https://learn.firstdraft.com/lessons/3-how-to-write-a-lesson/branches)
+
+Just as with the `main` lesson, any commits and pushes made on the development branch will automatically update the Learn lesson.
+
+When working on a lesson, a pull request can be opened for the new branch and the reviewer can view the changes to the lesson, e.g.
+
+[https://github.com/appdev-lessons/how-to-write-a-lesson/pull/1](https://github.com/appdev-lessons/how-to-write-a-lesson/pull/1)
+
+When the lesson is eventually merged to `main` the `authors/lessons` primary lesson will automatically update with the changes and the author can optionally delete the lesson that was automatically generated from the feature branch.
+
+### In-line editing of the lesson on Learn
+
+Currently, when a lesson is connected to a GitHub repo, the author loses the ability to edit the lesson in-line with the markdown GUI on Learn. We are working to re-implement this feature for quick edits on e.g. typos. Stay tuned.
+
+## Write the lesson
+
+The next sections cover how to write a lesson via the in-line editor or in the `content.md` file for a GitHub-connected lesson. First, there are some [markdown basics](#markdown-basics){: target="_self" }, then the author should become familiar with our [Learn-flavored markdown extensions](#learn-flavored-markdown-extensions){: target="_self" }, which are important for writing interactive lessons with quizzes and projects.
+
+## Markdown basics
+
+These sections contain a basic overview of the markdown syntax for writing lessons on Learn. 
+
+- Gitlab has good, complete guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); 
+- and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
+
+<div class="bg-blue-100 py-1 px-5">
+
+A handy reference for lesson markdown can be found in [this kitchen sink example](https://raw.githubusercontent.com/appdev-lessons/contact-book-first-database/main/content.md).
+
+Here is how that lesson looks when rendered Learn: [**Contact Book: Our very first database**](https://learn.firstdraft.com/lessons/130-contact-book-first-database)
+</div>
 
 ### Links open in a new tab
 
-We default all links to opening in a new tab. If you _don't_ want that, then include `{: target="_self" }` after the link.
+We default all links to opening in a new tab. If you _don't_ want that, then include `{: target="_self" }` after the link. For instance, to [reference the next section](#images){: target="_self" }, I wrote:
+
+```
+[reference the next section](#images){: target="_self" }
+```
 
 ### Images
 
-You can drag-and-drop images into the editor.
+You can drag-and-drop images into the in-line editor, which will generate an external asset URL:
+
+```
+![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+```
 
 ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg?)
 
-**TODO** In cloudinary generate more recognizable image names to make it easier to re-arrange them.
+Or reference a file from the `assets/` directory in a GitHub-connected lesson repo:
 
-<aside>
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
-		
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+```
+![](local-path-to-assets/example-image.jpg)
+```
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
-</aside>
+![](assets/example-image.jpg)
 
 You can make images (or anything else) full-width by adding the `bleed-full` class:
 
 ```
-![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+![](local-path-to-assets/example-image.jpg)
 {: .bleed-full }
 ```
 
-![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+![](assets/example-image.jpg)
 {: .bleed-full }
 
 ### Things you can do with any element
 
 On any element, you can:
-{: class="bg-lime-100" }
 
-**TODO** why are some Tailwind classes, e.g., border working? Some are, e.g. `background-color`.
-
-- Use Tailwind classes. E.g., you could add a background-color with:
+- Use Tailwind classes. E.g., you could add a background-color and border with:
 
     ```html
-  Call out this content
-  {: class="bg-lime-100" }
+    Call out this content
+    {: class="bg-lime-100 border" }
     ```
 
     Which produces:
 
     Call out this content
-    {: class="bg-lime-100" }
+    {: class="bg-lime-100 border" }
 
 - Use raw HTML elements within your markdown.
-    - Parse markdown within your HTML elements by adding `markdown="1"`.
+    - Don't forget to omit initial indentation within the element if you do this.
 
-        Don't forget to omit initial indentation within the element if you do this.
+- Here is a combined example to make call-out alert and notice boxes
 
-^
+    ```html
+    <div class="bg-red-100 py-1 px-5">
+    **Some Alert** 
+    
+    `some code`
+    </div>
+    ```
+
+    <div class="bg-red-100 py-1 px-5">
+    **Some Alert** 
+    
+    `some code`
+    </div>
+
+    ```html
+    <div class="bg-blue-100 py-1 px-5">
+    **Some Notice** 
+    
+    `some code`
+    </div>
+    ```
+
+    <div class="bg-blue-100 py-1 px-5">
+    **Some Notice** 
+    
+    `some code`
+    </div>
+
 
 ### Lists
 
@@ -71,79 +174,67 @@ In order to be sized properly, content of list items needs to be within a contai
 
 - Leave a blank line after every list item.
 
-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+- First item
 
-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+- Second item
 
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
-		
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+  To add indented content within an li:
 
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+  Add new lines and indent one level.
 
 - Code block within li:
 
-    ```ruby
+  ```ruby
   class Person
-   attr_accessor :first_name, :last_name
+    attr_accessor :first_name, :last_name
   end
-		```
+  ```
 		
--  ```ruby
-		class Person
-		  attr_accessor :first_name, :last_name
-		end
-		```
-- After the last item, leave a blank line and then an End Of Block (EOB) marker `^`.
-
-^
-
-**TODO** Modify the markdown parser to make adding children within li automatic.
-
-**TODO** Fenced code blocks within list items not being parsed properly by Kramdown? Odd — it works fine in Chapters.
+- ```ruby
+  class Person
+    attr_accessor :first_name, :last_name
+  end
+  ```
 
 ### How to write asides
 
 - In your markdown, add the `<aside>` _after_ the element that you want it to appear next to.
 
-- As with any other element, you can add any Tailwind classes. In particular:
-    - `bg-lime-100` for fun, very optional stuff.
-    - `bg-cyan-100` for slightly more important stuff.
-
 - Avoid putting any critical path content in asides.
 
 - Use traditional [markdown footnotes](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) for things that are not relevant to see in the flow, e.g. [citing sources](https://www.scribbr.com/category/citing-sources/), etc.
 
-^
 
-
-<aside class="bg-lime-100" markdown="1">
+<aside>
 This aside is next to a `ul`. How does it look?
 
 ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
 
 1. It has a list item inside it.
 
-1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+1. And some of those list items have indented content
 
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+    I'm indented content!
 
 1. ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
 
-    ```ruby
-		class Person
-		  attr_accessor :first_name, :last_name
-		end
-		```
-		
-Outside list.
-
 ```ruby
 class Person
-	attr_accessor :first_name, :last_name
+  attr_accessor :first_name, :last_name
 end
 ```
 </aside>
+
+The aside on the right was generated with:
+
+```html
+<aside>
+
+This aside is next to a `ul`. How does it look?
+
+...
+</aside>
+```
 
 ### Blockquotes
 
@@ -153,227 +244,112 @@ end
 > — W. Somerset Maugham
 ```
 
+Adding those `>` symbols at the beginning of the quoted lines produces:
+
 > The ability to quote is a serviceable substitute for wit.
 >
 > — W. Somerset Maugham
 
-### Nested lists with code
+## Learn-flavored markdown extensions
 
-##     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
-		
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
 
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia sapiente deleniti aliquam est dolorem natus provident quibusdam quisquam laboriosam. Omnis deserunt temporibus eaque facere vitae ea, non rerum perspiciatis ex!
+## Codeblock line and column highlighting
 
-The below is raw HTML (not markdown) that demonstrates the proper behavior of lists. The markdown parser is currently messing up code blocks within list items.
+You add the highlight options after the language tag in a codeblock within brackets.
 
-<ul>
-	<li><p>Most li children are narrow, except code blocks.</p></li>
-	<li><p>List items without at least element within, i.e. no children, are not being properly constrained.</p></li>
-	<li><p><a target="_blank" href="https://kramdown.gettalong.org/syntax.html#:~:text=The%20text%20of%20the%20last%20list%20item%20is%20also%20wrapped%20in%20a%20paragraph%20tag%20if%20all%20other%20list%20items%20contain%20a%20proper%20paragraph%20as%20first%20element.%20This%20makes%20the%20following%20use%20case%20work%20like%20expected%2C%20i.e.%20all%20the%20list%20items%20are%20wrapped%20in%20paragraphs%3A">Authors will have to ensure lines between list items</a> so that at least a paragraph is within each li. Or we'll have to modify the li parser to always add paragraphs. Or we'll have to autoformat the input markdown.</p></li>
-	<li>
-		<p>How</p>
+- You can highlight individual lines: `ruby{1}`
+- You can highlight multiple lines: `ruby{1,2,4,5}`
+- You can highlight a range of lines: `ruby{1-3}`
+- You can highlight individual columns: `ruby{1:(3)}`
+- You can highlight multiple columns: `ruby{1:(3,4,5)}`
+- You can highlight a range of columns: `ruby{1:(3-6)}`
 
-		<p>are you</p>
+Any combination should work.
 
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem placeat quidem accusantium, animi
-			accusamus maxime dolor eum hic numquam ab architecto voluptatibus. Cupiditate quae assumenda nulla quod nisi
-			facere fugiat!</p>
-	</li>
+    ```ruby{1:(1-6),3:(9-13)}
+    tokens = ["hello", "world", "!"]
+    tokens.each do |token|
+      print token
+      print " " if token.count("a-zA-Z") > 0
+    end
+    ```
 
-	<li>
-		<p>This code block is correctly bleeding right:</p>
+Produces:
 
-		<pre>
-				<code>
-				<b>Lorem ipsum dolor</b>, sit amet consectetur adipisicing elit. Quaerat consectetur in enim eius
-				facere animi alias fugit perspiciatis assumenda ea quisquam quasi cumque corporis temporibus, nihil amet est
-				laborum ullam!
+```ruby{1:(1-6),3:(9-13)}
+tokens = ["hello", "world", "!"]
+tokens.each do |token|
+  print token
+  print " " if token.count("a-zA-Z") > 0
+end
+```
 
-				hi there
+Highlighting also works with HTML and ERB codeblocks.
 
-				more
-				</code>
-			</pre>
+    ```erb{1:(1-3)}
+    <% newsfeed_photos.each do |the_photo| %>
+      <div class="card">
+    ```
 
-		<p>Need to solve the extraneous left whitespace within the pre from the markdown's indentation</p>
-	</li>
+Produces:
 
-	<li>
-		<ul>
-			<li>
-				<p>
-					second-level
-				</p>
-			</li>
-			<li>
-				<pre>
-					<code>
-					<b>Lorem ipsum dolor</b>, sit amet consectetur adipisicing elit. Quaerat consectetur in enim eius
-					facere animi alias fugit perspiciatis assumenda ea quisquam quasi cumque corporis temporibus, nihil amet est
-					laborum ullam!
-
-					hi there
-
-					more
-					</code>
-				</pre>
-			</li>
-			<li>
-				<ul>
-					<li>
-						<p>
-							third-level
-						</p>
-					</li>
-					<li>
-						<pre>
-							<code>
-							<b>Lorem ipsum dolor</b>, sit amet consectetur adipisicing elit. Quaerat consectetur in enim eius
-							facere animi alias fugit perspiciatis assumenda ea quisquam quasi cumque corporis temporibus, nihil amet est
-							laborum ullam!
-
-							hi there
-
-							more
-							</code>
-						</pre>
-					</li>
-					<li>
-						<ul>
-							<li>
-								<p>fourth-level</p>
-							</li>
-							<li>
-								<p>Code blocks beyond this level don't bleed</p>
-							</li>
-							<li>
-								<pre>
-									<code>
-									<b>Lorem ipsum dolor</b>, sit amet consectetur adipisicing elit. Quaerat consectetur in enim eius
-									facere animi alias fugit perspiciatis assumenda ea quisquam quasi cumque corporis temporibus, nihil amet est
-									laborum ullam!
-
-									hi there
-
-									more
-									</code>
-								</pre>
-							</li>
-							<li>
-								<p>
-									Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ut deserunt officiis magnam enim, vel accusantium modi voluptas eaque, iure saepe sed suscipit fugit repellendus, corrupti ea commodi neque delectus.
-								</p>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-</ul>
-
-<h2>Tables</h2>
-
-<table>
-	<thead>
-		<tr>
-			<th>First</th>
-			<th>Last</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Osha</td>
-			<td>Groetz</td>
-		</tr>
-		<tr>
-			<td>Jelani</td>
-			<td>Woods</td>
-		</tr>
-		<tr>
-			<td>Stephen</td>
-			<td>Walter</td>
-		</tr>
-		<tr>
-			<td>Jessie</td>
-			<td>Chang</td>
-		</tr>
-		<tr>
-			<td>Ainsley</td>
-			<td>Galvez</td>
-		</tr>
-		<tr>
-			<td>Diego</td>
-			<td>Cruz</td>
-		</tr>
-		<tr>
-			<td>Logan</td>
-			<td>CoBell</td>
-		</tr>
-		<tr>
-			<td>Mia</td>
-			<td>Battle</td>
-		</tr>
-		<tr>
-			<td>Romeo</td>
-			<td>Sarangaya</td>
-		</tr>
-	</tbody>
-</table>
-
-<div class="bleed-full">
-	<table>
-		<thead>
-			<tr>
-				<th>First</th>
-				<th>Last</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Osha</td>
-				<td>Groetz</td>
-			</tr>
-			<tr>
-				<td>Jelani</td>
-				<td>Woods</td>
-			</tr>
-			<tr>
-				<td>Stephen</td>
-				<td>Walter</td>
-			</tr>
-			<tr>
-				<td>Jessie</td>
-				<td>Chang</td>
-			</tr>
-			<tr>
-				<td>Ainsley</td>
-				<td>Galvez</td>
-			</tr>
-			<tr>
-				<td>Diego</td>
-				<td>Cruz</td>
-			</tr>
-			<tr>
-				<td>Logan</td>
-				<td>CoBell</td>
-			</tr>
-			<tr>
-				<td>Mia</td>
-				<td>Battle</td>
-			</tr>
-			<tr>
-				<td>Romeo</td>
-				<td>Sarangaya</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
-# Examples of markdown extensions
+```erb{1:(1-3)}
+<% newsfeed_photos.each do |the_photo| %>
+  <div class="card">
+```
 
 ## Quiz questions
+
+A quiz question is built like so:
+
+```
+- The question:
+- First option.
+  - Correct! (Copy to show when first option is selected.)
+- Second option.
+  - Not quite. (Copy to show when second option is selected.)
+- Third option.
+  - Not quite. (Copy to show when third option is selected.)
+{: .question_type #unique_identifier title="Some title" points="1" answer="1" }
+```
+
+The options contained in the `{: }` tags on a new line directly below the question options are:
+
+- `.question_type`
+  - An HTML `class`. One of `.choose_all`, `.choose_best`, `.free_text`, or `.free_text_number`; details for each in the sections below
+- `#unique_identifier`
+  - An HTML `id`. Used to identify the question in the database. 
+  - Each ID must be unique within a lesson. Any questions with the same ID in the same lesson will be treated as the same question. The last question with that ID will be saved in the database.
+- `title`
+  - Used by the user to identify the question in the progress table. 
+  - It is not used to identify the question in the database. It does not have to be unique.
+  - For runnable code blocks, this title is also used as a header to the code editor displayed to the user.
+- `points`
+  - Number of points the question is worth.
+- `answer`
+  - Indicates the index of the correct answer in the list of options (indexing begins at 1 with the first option.
+
+### choose_all
+
+A choose all question type is a multiple choice question where the user can select multiple answers. The user can select the answer by clicking on the checkbox next to the answer.
+
+To add a choose all question to your lesson, use the following markdown syntax,
+
+```
+- Example of choose_all. First bullet is the prompt
+- First option (incorrect)
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
+- Second option (correct)
+  - This is correct because of xyz reason
+  - Also correct because of abc reason
+- Third option (correct)
+  - That's right! Because of xyz reason
+{: .choose_all #zebra points="2" answer="[2, 3]" }
+```
+
+The user will receive partial points for each correct answer they select. The user will receive all points only after they select all the correct answers. Partial points are awarded by dividing the total points by the number of correct answers. For example, if the question has 3 points and there are 3 correct answers, then the user will receive 1 point for each correct answer.
 
 - Example of choose_all. First bullet is the prompt
 - First option (incorrect)
@@ -386,47 +362,252 @@ The below is raw HTML (not markdown) that demonstrates the proper behavior of li
     - That's right! Because of xyz reason
 - Fourth option (incorrect)
     - This is not correct because of xyz reason
-{: .choose_all #zebra points="20" answer="[2, 3]" }
+{: .choose_all #zebra title="The choose_all question type" points="2" answer="[2, 3]" }
 
-- Example of choose_one. First bullet is the prompt
+### choose_best
+
+A choose best question type is a multiple choice question where the user can select only one answer. The user can select the answer by clicking on the radio button next to the answer.
+
+To add a choose best question to your lesson, use the following markdown syntax,
+
+```
+- Example of choose_best. First bullet is the prompt
 - First option (incorrect)
-    - This is not correct because of xyz reason
+  - This is not correct because of xyz reason
 - Second option (incorrect)
-    - This is not correct because of xyz reason
-    - Also not correct because of abc reason
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
 - Third option (correct)
-    - That's right! Because of xyz reason
-    - Also correct because of abc reason
-- Fourth option (incorrect)
-    - This is not correct because of xyz reason
-{: .choose_best #giraffe points="30" answer="3" }
+  - That's right! Because of xyz reason
+  - Also correct because of abc reason
+{: .choose_best #giraffe title="The choose_best question type" points="1" answer="3" }
+```
 
-### Free text (correct: create)
+Once the user selects the one correct answer, they will receive all the points.
+
+- Example of choose_best. First bullet is the prompt
+- First option (incorrect)
+  - This is not correct because of xyz reason
+- Second option (incorrect)
+  - This is not correct because of xyz reason
+  - Also not correct because of abc reason
+- Third option (correct)
+  - That's right! Because of xyz reason
+  - Also correct because of abc reason
+{: .choose_best #giraffe title="The choose_best question type" points="1" answer="3" }
+
+**Special Cases for choose_all and choose_best:**
+
+- "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
+
+  `{: .choose_all #zebra title="The choose_all question type" points="2" answer="any" }`
+
+  This will mark all answers in the given options as correct.
+
+- "optional answer": A `choose_all` or `choose_best` question must have a correct answer selected. It is not optional. If you leave out the answer attribute then any answer a user selects will be marked as incorrect.
+
+### free_text
+
+A free text question type allows the respondent to enter any text they wish.
+
+To add a free text question to your lesson, use the following markdown syntax,
+
+```
+- Which action will be triggered when the user visits `/posts/new`?
+- create
+  - The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
+- new
+  - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
+{: .free_text #elephant title="The free_text question type" points="1" answer="2" }
+```
+
+A user can type in the exact or a partial match for the correct answer. For example, if the correct answer is `Ruby`, the user can type in `Ruby`, `R`, `r`, etc. as the answer checking is done with a lenient regex.
 
 - Which action will be triggered when the user visits `/posts/new`?
 - create
-    - The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
+  - Not quite. The `posts#create` action is triggered after the user _submits_ the form, not when they visit the form before filling it out.
 - new
-    - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
-{: .free_text #elephant points="30" answer="2" }
+  - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
+{: .free_text #elephant title="The free_text question type" points="1" answer="2" }
 
-### No right answer
+### free_text_number
 
-- Is there a pain point in your life that you might be able to solve with a small CRUD app?
-- any
-    - Okay! I have a note in my phone's Notes app dedicated to collecting pain points/app ideas. I recommend that you do something like that, too.
-{: .broken #lion points="30" }
+A free text number question type allows the respondent to enter any number or decimal they wish. This is usually used to collect user completion times.
 
-## LTI iframe
+To add a free text number question to your lesson, use the following markdown syntax,
 
-LTI{}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[hyena]{400}
+```
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+```
 
-- Launch URL: https://lti-provider-example.herokuapp.com/lti_tool (required, no default)
-- Button: Load TP Example in new tab (optional, default: "Load resource in new tab", if blank then assume iframe),
-- Key: ...
-- Secret: ...
-{: .lti #elephant title="TP Example" points="30" answer="2" }
+If options are given for the correct answer, a user can type in only the exact match of the answer. For example, if the answer is 5, the user can type in 5, 5.0, 5.00, 5.000, etc. but not 5.1, 5.01, 5.001, etc.
+
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+
+**Special Cases for free_text and free_text_number:**
+
+- "fallback option": If you want to show a custom message when a user enters an incorrect answer, you can use the `any` option. For example,
+
+  ```
+  - What programming language are we learning today?
+  - Ruby
+    - Correct.
+  - any
+    - Not quite right. Re-read the previous sections and try again.
+  {: .free_text #what_language title="Language we are learning" points="1" answer="[1]" }
+  ```
+
+- "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
+
+  `{: .free_text #elephant title="The free_text question type" points="1" answer="any" }`
+
+  This will mark all answers in the given options as correct.
+
+- "optional answer": If you want to accept any answer as the correct one, you can skip the answer attribute. For example,
+
+  `{: .free_text #elephant title="The free_text question type" points="1" }`
+
+## Runnable and graded codeblocks
+
+An author can insert runnable or graded codeblocks into the lesson.
+
+### Runnable Ruby (repl)
+
+A Ruby runnable (a.k.a. `.repl`) question type allows the user to modify and execute Ruby code.
+
+To add a Ruby question to your lesson, use the following markdown syntax,
+
+
+    ```ruby
+    x = "Hello"
+    y = "World"
+    z = x + y
+
+    pp z
+    ```
+    {: .repl #bear title="Runnable Ruby" points="1"}
+
+After the user executes the code at least once, they are awarded all the points.
+
+```ruby
+x = "Hello"
+y = "World"
+z = x + y
+
+pp z
+```
+{: .repl #bear title="Runnable Ruby" points="1"}
+
+**Additional attributes available on repl type questions:**
+
+- `readonly_lines`
+  - Some lines can be marked as "readonly". The user will not be able to modify these lines. This attribute accepts an array of line numbers.
+  - Example: `readonly_lines="[10, 16, 17]"`
+- `setup_code`
+  - A single line or a range of lines can be marked as setup code. These lines will not be shown to the user. The line numbers shown on the left margin of the code editor will not include those lines marked as `setup_code`.
+  - Example: `setup_code="1"`
+  - Example: `setup_code="1-4"`
+
+### Graded Ruby (repl + repl-test)
+
+Each Ruby question can have multiple tests. When a student clicks on the "Run" button for a test, the test executes, and an output and summary are displayed to the student. The output represents the result of each individual test, indicating whether it passed or failed. The summary provides an overview of the test results, including the number of tests that passed.
+
+Here's an example,
+
+    ```ruby
+    pp "change me :)"
+    ```
+    {: .repl #graded_code_block title="First graded code block"}
+
+    ```ruby
+    describe "First graded code block" do
+      it "should print 'Hello, world!'" do
+        path = "/tmp/code.rb"
+        expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
+      end
+    end
+    ```
+    {: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+
+Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
+
+It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded code block should print 'Hello, world!'"`.
+
+Note the key attribute of the `repl-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
+
+Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
+
+```ruby
+pp "change me :)"
+```
+{: .repl #graded_code_block title="First graded code block"}
+
+```ruby
+describe "First graded code block" do
+  it "should print 'Hello, world!'" do
+    path = "/tmp/code.rb"
+    expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
+  end
+end
+```
+{: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+
+#### More examples of graded code blocks
+
+The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.repl-test` to find the relevant examples):
+
+- [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
+- [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
+
+### Runnable HTML (repl)
+
+An HTML runnable (a.k.a. `.repl`) question type allows the user to modify and execute HTML code.
+
+To add an HTML question to your lesson, just specify the code type in the beginning of the code block,
+
+    ```html
+    <h1>Hi</h1>
+
+    <p>there</p>
+    ```
+    {: .repl #salmon title="Runnable HTML" points="1"}
+
+```html
+<h1>Hi</h1>
+
+<p>there</p>
+```
+{: .repl #salmon title="Runnable HTML" points="1"}
+
+We do not yet support grading via connected tests on runnable HTML code blocks.
 
 ## LTI button
 
-LTI{Load assignment}(https://lti-provider-example.herokuapp.com/lti_tool)[test]{secret}(20)[baboon]{400}
+An LTI launch button can also be inserted into a lesson, allowing connections to `rake grade` projects:
+
+```
+LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
+```
+
+which renders as:
+
+LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
+
+This line of markdown is made up of:
+
+- `LTI`
+  - The line must start with this to render the launch button.
+- `{Load MSM Queries assignment}`
+  - The copy shown on the button.
+- `(https://grades.firstdraft.com/launch)`
+  - The launch URL, which will need to be configured on the first click of the button by the author.
+- `[test]{secret}`
+  - The consumer (`test`) and secret (`secret`) key provided by the tool.
+- `(10)`
+  - The number of points the project is worth within the current lesson.
+- `[MSM Queries Project]`
+  - The name of the project displayed to the user in the progress table.
+
+---
