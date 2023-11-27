@@ -133,9 +133,7 @@ On any element, you can:
     {: class="bg-lime-100 border" }
 
 - Use raw HTML elements within your markdown.
-    - Parse markdown within your HTML elements by adding `markdown="1"`.
-
-        Don't forget to omit initial indentation within the element if you do this.
+    - Don't forget to omit initial indentation within the element if you do this.
 
 - Here is a combined example to make call-out alert and notice boxes
 
