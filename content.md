@@ -12,7 +12,7 @@ The [appdev-lessons GitHub organization](https://github.com/appdev-lessons) cont
 
 The following details the lesson repository files and how to use each. **Do not rename these files**:
 
-<div class="bleed-full" markdown="1">
+<div class="bleed-full">
 
 | File | Purpose | Usage  | 
 |-----------------|-------------|---------------|
@@ -73,7 +73,7 @@ These sections contain a basic overview of the markdown syntax for writing lesso
 - Gitlab has good, complete guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); 
 - and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
 
-<div class="bg-blue-100 py-1 px-5" markdown="1">
+<div class="bg-blue-100 py-1 px-5">
 
 A handy reference for lesson markdown can be found in [this kitchen sink example](https://raw.githubusercontent.com/appdev-lessons/contact-book-first-database/main/content.md).
 
@@ -140,28 +140,28 @@ On any element, you can:
 - Here is a combined example to make call-out alert and notice boxes
 
     ```html
-    <div class="bg-red-100 py-1 px-5" markdown="1">
+    <div class="bg-red-100 py-1 px-5">
     **Some Alert** 
     
     `some code`
     </div>
     ```
 
-    <div class="bg-red-100 py-1 px-5" markdown="1">
+    <div class="bg-red-100 py-1 px-5">
     **Some Alert** 
     
     `some code`
     </div>
 
     ```html
-    <div class="bg-blue-100 py-1 px-5" markdown="1">
+    <div class="bg-blue-100 py-1 px-5">
     **Some Notice** 
     
     `some code`
     </div>
     ```
 
-    <div class="bg-blue-100 py-1 px-5" markdown="1">
+    <div class="bg-blue-100 py-1 px-5">
     **Some Notice** 
     
     `some code`
@@ -207,7 +207,7 @@ In order to be sized properly, content of list items needs to be within a contai
 - Use traditional [markdown footnotes](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) for things that are not relevant to see in the flow, e.g. [citing sources](https://www.scribbr.com/category/citing-sources/), etc.
 
 
-<aside markdown="1">
+<aside>
 This aside is next to a `ul`. How does it look?
 
 ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
@@ -230,7 +230,7 @@ end
 The aside on the right was generated with:
 
 ```html
-<aside markdown="1">
+<aside>
 
 This aside is next to a `ul`. How does it look?
 
