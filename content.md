@@ -73,6 +73,13 @@ These sections contain a basic overview of the markdown syntax for writing lesso
 - Gitlab has good, complete guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); 
 - and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
 
+<div class="bg-blue-100 py-1 px-5" markdown="1">
+
+A handy reference for lesson markdown can be found in [this kitchen sink example](https://raw.githubusercontent.com/appdev-lessons/contact-book-first-database/main/content.md).
+
+Here is how that lesson looks when rendered Learn: [**Contact Book: Our very first database**](https://learn.firstdraft.com/lessons/130-contact-book-first-database)
+</div>
+
 ### Links open in a new tab
 
 We default all links to opening in a new tab. If you _don't_ want that, then include `{: target="_self" }` after the link. For instance, to [reference the next section](#images){: target="_self" }, I wrote:
