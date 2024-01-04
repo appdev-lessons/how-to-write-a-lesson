@@ -60,7 +60,7 @@ When the lesson is eventually merged to `main` the `authors/lessons` primary les
 
 ### In-line editing of the lesson on Learn
 
-Currently, when a lesson is connected to a GitHub repo, the author loses the ability to edit the lesson in-line with the markdown GUI on Learn. We are working to re-implement this feature for quick edits on e.g. typos. Stay tuned.
+When a lesson is connected to a GitHub repo, the Author can still make edits to the lesson in the markdown GUI interface on Learn. When edits are made and the "Update Lesson" button is clicked, a commit is sent to the GitHub repository with the generic message "Inline update of content.md on Learn". This ensures that edits can be made either directly to the GitHub repository, or here on Learn, and both locations stay in sync. It is recommended that small updates like fixing typos, or drag and dropping additional images into a lesson be made directly here on Learn, with larger updates like rewritten sections carried out via GitHub pull requests and merges.
 
 ## Write the lesson
 
