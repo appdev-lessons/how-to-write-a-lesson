@@ -16,13 +16,13 @@ The following details the lesson repository files and how to use each. **Do not 
 
 | File | Purpose | Usage  | 
 |-----------------|-------------|---------------|
-| `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![](local-path-to-assets/my-image.png)` |
+| `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![](local-path-to-assets/my-image.png)`. You can use the path `/assets/my-image.png` or `assets/my-image.png`, both will render in your local markdown preview; and when you connect the repository with a Learn Lesson, the assets will upload to Cloudinary and the paths will automatically be converted to a hosted URL.  |
 |-----------------+--------------+-----------------|
 | `.gitignore` | Ignore any local files in the folder (i.e. do not commit these to the repo) | The template ignores a few common files that should not be included in the commit history. More can be added if required. |
 |-----------------+--------------+-----------------|
 | `README.md` | General repo information  | Replace the first heading with the name of the repo and replace the URL with that of the learn lesson after connecting the lesson with Learn |
 |-----------------+--------------+-----------------|
-| `content.md` | Contains the lesson "title" and "content" | The file should begin with a level one (`<h1>`) markdown heading `# My Title`, which will be parsed to form the lesson title on Learn. Everything after this first `#` line will be parsed into the lesson content. All `assets/` will be rendered from their raw GitHub URL when opened on Learn: `![](https://raw.githubusercontent.com/appdev-lessons/REPO/BRANCH/assets/example-image.png)` |
+| `content.md` | Contains the lesson "title" and "content" | The file should begin with a level one (`<h1>`) markdown heading `# My Title`, which will be parsed to form the lesson title on Learn. Everything after this first `#` line will be parsed into the lesson content. |
 
 </div>
 
@@ -93,7 +93,7 @@ We default all links to opening in a new tab. If you _don't_ want that, then inc
 You can drag-and-drop images into the in-line editor, which will generate an external asset URL:
 
 ```
-![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+![file](https://res.cloudinary.com/[CLOUD_NAME]/image/upload/[IMAGE_VERSION]/appdev-lessons/[REPO_NAME]/[BRANCH]/[IMAGE_NAME])
 ```
 
 ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg?)
