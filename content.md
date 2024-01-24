@@ -73,7 +73,7 @@ These sections contain a basic overview of the markdown syntax for writing lesso
 - Gitlab has good, complete guides to Markdown/Kramdown: [Handbook Markdown Guide](https://about.gitlab.com/handbook/markdown-guide/); 
 - and our own [short cheat-sheet can be found here](https://gist.github.com/raghubetina/a1b6e89e24a8c3acae6f0b63a1fd3323).
 
-<div class="bg-blue-100 py-1 px-5">
+<div class="alert alert-primary">
 
 A handy reference for lesson markdown can be found in [this kitchen sink example](https://raw.githubusercontent.com/appdev-lessons/contact-book-first-database/main/content.md).
 
@@ -120,46 +120,46 @@ You can make images (or anything else) full-width by adding the `bleed-full` cla
 
 On any element, you can:
 
-- Use Tailwind classes. E.g., you could add a background-color and border with:
+- [Use Bootstrap classes](https://getbootstrap.com/docs/5.3/getting-started/introduction/). E.g., you could [add a background-color](https://getbootstrap.com/docs/5.3/utilities/background/) and [border](https://getbootstrap.com/docs/5.3/utilities/borders/) with:
 
     ```html
     Call out this content
-    {: class="bg-lime-100 border" }
+    {: class="bg-warning-subtle border" }
     ```
 
     Which produces:
 
     Call out this content
-    {: class="bg-lime-100 border" }
+    {: class="bg-warning-subtle border" }
 
 - Use raw HTML elements within your markdown.
     - Don't forget to omit initial indentation within the element if you do this.
 
-- Here is a combined example to make call-out alert and notice boxes
+- Here is a combined example to make call-out [Bootstrap alert boxes](https://getbootstrap.com/docs/5.3/components/alerts/)
 
     ```html
-    <div class="bg-red-100 py-1 px-5">
+    <div class="alert alert-danger">
     **Some Alert** 
     
     `some code`
     </div>
     ```
 
-    <div class="bg-red-100 py-1 px-5">
+    <div class="alert alert-danger">
     **Some Alert** 
     
     `some code`
     </div>
 
     ```html
-    <div class="bg-blue-100 py-1 px-5">
+    <div class="alert alert-primary">
     **Some Notice** 
     
     `some code`
     </div>
     ```
 
-    <div class="bg-blue-100 py-1 px-5">
+    <div class="alert alert-primary">
     **Some Notice** 
     
     `some code`
