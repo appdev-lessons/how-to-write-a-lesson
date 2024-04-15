@@ -593,7 +593,7 @@ LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{sec
 
 which renders as:
 
-LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
+LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[kcKih6i68NmbdcmcdeCEjg2J]{jhytB1uc3YrCA26fFWDEw23U}(10)[MSM Queries Project]
 
 This line of markdown is made up of:
 
@@ -604,7 +604,7 @@ This line of markdown is made up of:
 - `(https://grades.firstdraft.com/launch)`
   - The launch URL, which will need to be configured on the first click of the button by the author.
 - `[test]{secret}`
-  - The consumer (`test`) and secret (`secret`) key provided by the tool.
+  - The consumer (`test`) and secret (`secret`) key provided by the tool. **You will need to find or request these keys on Grades to properly configure the button for launching.**
 - `(10)`
   - The number of points the project is worth within the current lesson.
 - `[MSM Queries Project]`
