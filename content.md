@@ -250,6 +250,28 @@ Adding those `>` symbols at the beginning of the quoted lines produces:
 >
 > — W. Somerset Maugham
 
+### Mermaid diagrams
+
+Authors can create [mermaid diagrams](https://mermaid.js.org/syntax/examples.html) in fenced mermaid type codeblocks. For example:
+
+    ```mermaid
+    graph TD
+      A-->B
+      A-->C
+      B-->D
+      C-->D
+    ```
+
+renders as:
+
+```mermaid
+graph TD
+  A-->B
+  A-->C
+  B-->D
+  C-->D
+```
+
 ## Learn-flavored markdown extensions
 
 We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
