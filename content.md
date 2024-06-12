@@ -495,9 +495,9 @@ If options are given for the correct answer, a user can type in only the exact m
 
 An author can insert runnable or graded codeblocks into the lesson.
 
-### Runnable Ruby (repl)
+### Runnable Ruby (codeblock)
 
-A Ruby runnable (a.k.a. `.repl`) question type allows the user to modify and execute Ruby code.
+A Ruby runnable question type allows the user to modify and execute Ruby code.
 
 To add a Ruby question to your lesson, use the following markdown syntax,
 
@@ -509,7 +509,7 @@ To add a Ruby question to your lesson, use the following markdown syntax,
 
     pp z
     ```
-    {: .repl #bear title="Runnable Ruby" points="1"}
+    {: .codeblock #bear title="Runnable Ruby" points="1"}
 
 After the user executes the code at least once, they are awarded all the points.
 
@@ -520,9 +520,9 @@ z = x + y
 
 pp z
 ```
-{: .repl #bear title="Runnable Ruby" points="1"}
+{: .codeblock #bear title="Runnable Ruby" points="1"}
 
-**Additional attributes available on repl type questions:**
+**Additional attributes available on codeblock type questions:**
 
 - `readonly_lines`
   - Some lines can be marked as "readonly". The user will not be able to modify these lines. This attribute accepts an array of line numbers.
@@ -532,7 +532,7 @@ pp z
   - Example: `setup_code="1"`
   - Example: `setup_code="1-4"`
 
-### Graded Ruby (repl + repl-test)
+### Graded Ruby (codeblock + codeblock-test)
 
 Each Ruby question can have multiple tests. When a student clicks on the "Run" button for a test, the test executes, and an output and summary are displayed to the student. The output represents the result of each individual test, indicating whether it passed or failed. The summary provides an overview of the test results, including the number of tests that passed.
 
@@ -541,7 +541,7 @@ Here's an example,
     ```ruby
     pp "change me :)"
     ```
-    {: .repl #graded_code_block title="First graded code block"}
+    {: .codeblock #graded_code_block title="First graded code block"}
 
     ```ruby
     describe "First graded code block" do
@@ -551,20 +551,20 @@ Here's an example,
       end
     end
     ```
-    {: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+    {: .codeblock-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
 Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
 
 It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded code block should print 'Hello, world!'"`.
 
-Note the key attribute of the `repl-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
+Note the key attribute of the `codeblock-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
 
 Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
 
 ```ruby
 pp "change me :)"
 ```
-{: .repl #graded_code_block title="First graded code block"}
+{: .codeblock #graded_code_block title="First graded code block"}
 
 ```ruby
 describe "First graded code block" do
@@ -574,18 +574,18 @@ describe "First graded code block" do
   end
 end
 ```
-{: .repl-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+{: .codeblock-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
 #### More examples of graded code blocks
 
-The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.repl-test` to find the relevant examples):
+The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
 
 - [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
 - [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
 
-### Runnable HTML (repl)
+### Runnable HTML (codeblock)
 
-An HTML runnable (a.k.a. `.repl`) question type allows the user to modify and execute HTML code.
+An HTML runnable question type allows the user to modify and execute HTML code.
 
 To add an HTML question to your lesson, just specify the code type in the beginning of the code block,
 
@@ -594,14 +594,14 @@ To add an HTML question to your lesson, just specify the code type in the beginn
 
     <p>there</p>
     ```
-    {: .repl #salmon title="Runnable HTML" points="1"}
+    {: .codeblock #salmon title="Runnable HTML" points="1"}
 
 ```html
 <h1>Hi</h1>
 
 <p>there</p>
 ```
-{: .repl #salmon title="Runnable HTML" points="1"}
+{: .codeblock #salmon title="Runnable HTML" points="1"}
 
 We do not yet support grading via connected tests on runnable HTML code blocks.
 
