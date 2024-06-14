@@ -276,6 +276,25 @@ graph TD
 
 We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
 
+## Copyable codeblocks
+
+In general, our mantra is "type don't copy-paste!". However, there are times when an author might want a copyable codeblock for e.g. API keys, boilerplate HTML, etc. 
+
+In that case, an author can add a `{: copyable }` keyword below a static codeblock to add the ability to copy to clipboard with a click on the icon:
+
+    ```
+    copy instead of type!
+    ```
+    {: copyable }
+
+Produces:
+
+```
+copy instead of type!
+```
+{: copyable }
+
+
 ## Codeblock line and column highlighting
 
 You add the highlight options after the language tag in a codeblock within brackets.
