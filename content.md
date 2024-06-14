@@ -16,7 +16,7 @@ The following details the lesson repository files and how to use each. **Do not 
 
 | File | Purpose | Usage  | 
 |-----------------|-------------|---------------|
-| `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![](local-path-to-assets/my-image.png)`. You can use the path `/assets/my-image.png` or `assets/my-image.png`, both will render in your local markdown preview; and when you connect the repository with a Learn Lesson, the assets will upload to Cloudinary and the paths will automatically be converted to a hosted URL.  |
+| `assets/` | Folder containing images, gifs, etc. that should be rendered in the lesson | Place all asset files in this folder and reference them within `content.md` with the syntax `![Alt text here](local-path-to-assets/my-image.png)`. You can use the path `/assets/my-image.png` or `assets/my-image.png`, both will render in your local markdown preview; and when you connect the repository with a Learn Lesson, the assets will upload to Cloudinary and the paths will automatically be converted to a hosted URL.  |
 |-----------------+--------------+-----------------|
 | `.gitignore` | Ignore any local files in the folder (i.e. do not commit these to the repo) | The template ignores a few common files that should not be included in the commit history. More can be added if required. |
 |-----------------+--------------+-----------------|
@@ -101,19 +101,19 @@ You can drag-and-drop images into the in-line editor, which will generate an ext
 Or reference a file from the `assets/` directory in a GitHub-connected lesson repo:
 
 ```
-![](local-path-to-assets/example-image.jpg)
+![Alt text here](local-path-to-assets/example-image.jpg)
 ```
 
-![](assets/example-image.jpg)
+![Alt text here](assets/example-image.jpg)
 
 You can make images (or anything else) full-width by adding the `bleed-full` class:
 
 ```
-![](local-path-to-assets/example-image.jpg)
+![Alt text here](local-path-to-assets/example-image.jpg)
 {: .bleed-full }
 ```
 
-![](assets/example-image.jpg)
+![Alt text here](assets/example-image.jpg)
 {: .bleed-full }
 
 ### Things you can do with any element
