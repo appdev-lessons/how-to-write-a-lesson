@@ -550,7 +550,6 @@ If options are given for the correct answer, a user can type in only the exact m
     - Not quite right. Re-read the previous sections and try again.
   {: .free_text #what_language title="Language we are learning" points="1" answer="[1]" }
   ```
-  {: copyable }
 
 - "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
 
@@ -581,6 +580,7 @@ To add a Ruby question to your lesson, use the following markdown syntax,
     pp z
     ```
     {: .codeblock #bear title="Runnable Ruby" points="1"}
+    {: copyable }
 
 After the user executes the code at least once, they are awarded all the points.
 
