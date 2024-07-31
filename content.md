@@ -299,7 +299,7 @@ As soon as there are at least four answers to that question in the lesson, a tim
 
 ![Time taken badge](/assets/time-taken-badge.png)
 
-And the totals will be tallied on the Author-facing course configuration page:
+and the totals will be tallied on the Author-facing course configuration page:
 
 ![Time taken author tally](/assets/time-taken-author-tally.png)
 
