@@ -126,6 +126,7 @@ On any element, you can:
     Call out this content
     {: class="bg-warning-subtle border" }
     ```
+    {: copyable }
 
     Which produces:
 
@@ -144,6 +145,7 @@ On any element, you can:
     `some code`
     </div>
     ```
+    {: copyable }
 
     <div class="alert alert-danger">
     **Some Alert** 
@@ -261,6 +263,7 @@ Authors can create [mermaid diagrams](https://mermaid.js.org/syntax/examples.htm
       B-->D
       C-->D
     ```
+    {: copyable }
 
 renders as:
 
@@ -350,6 +353,7 @@ Any combination should work.
       print " " if token.count("a-zA-Z") > 0
     end
     ```
+    {: copyable }
 
 Produces:
 
@@ -367,6 +371,7 @@ Highlighting also works with HTML and ERB codeblocks.
     <% newsfeed_photos.each do |the_photo| %>
       <div class="card">
     ```
+    {: copyable }
 
 Produces:
 
@@ -389,6 +394,7 @@ A quiz question is built like so:
   - Not quite. (Copy to show when third option is selected.)
 {: .question_type #unique_identifier title="Some title" points="1" answer="1" }
 ```
+{: copyable }
 
 The options contained in the `{: }` tags on a new line directly below the question options are:
 
@@ -424,6 +430,7 @@ To add a choose all question to your lesson, use the following markdown syntax,
   - That's right! Because of xyz reason
 {: .choose_all #zebra points="2" answer="[2, 3]" }
 ```
+{: copyable }
 
 The user will receive partial points for each correct answer they select. The user will receive all points only after they select all the correct answers. Partial points are awarded by dividing the total points by the number of correct answers. For example, if the question has 3 points and there are 3 correct answers, then the user will receive 1 point for each correct answer.
 
@@ -458,6 +465,7 @@ To add a choose best question to your lesson, use the following markdown syntax,
   - Also correct because of abc reason
 {: .choose_best #giraffe title="The choose_best question type" points="1" answer="3" }
 ```
+{: copyable }
 
 Once the user selects the one correct answer, they will receive all the points.
 
@@ -496,6 +504,7 @@ To add a free text question to your lesson, use the following markdown syntax,
   - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
 {: .free_text #elephant title="The free_text question type" points="1" answer="2" }
 ```
+{: copyable }
 
 A user can type in the exact or a partial match for the correct answer. For example, if the correct answer is `Ruby`, the user can type in `Ruby`, `R`, `r`, etc. as the answer checking is done with a lenient regex.
 
@@ -518,6 +527,7 @@ A free text number question type allows the respondent to enter any number or de
 	- Not quite.
 {: .free_text_number #two_plus_two title="Two plus two" points="1" answer="1" }
 ```
+{: copyable }
 
 If options are given for the correct answer, a user can type in only the exact match of the answer. For example, if the answer is 5, the user can type in 5, 5.0, 5.00, 5.000, etc. but not 5.1, 5.01, 5.001, etc.
 
@@ -540,6 +550,7 @@ If options are given for the correct answer, a user can type in only the exact m
     - Not quite right. Re-read the previous sections and try again.
   {: .free_text #what_language title="Language we are learning" points="1" answer="[1]" }
   ```
+  {: copyable }
 
 - "any correct answer": If you want to accept any answer, you can use the `any` option in the answer array. For example,
 
@@ -570,6 +581,7 @@ To add a Ruby question to your lesson, use the following markdown syntax,
     pp z
     ```
     {: .codeblock #bear title="Runnable Ruby" points="1"}
+    {: copyable }
 
 After the user executes the code at least once, they are awarded all the points.
 
@@ -672,6 +684,7 @@ An LTI launch button can also be inserted into a lesson, allowing connections to
 ```
 LTI{Load MSM Queries assignment}(https://grades.firstdraft.com/launch)[test]{secret}(10)[MSM Queries Project]
 ```
+{: copyable }
 
 which renders as:
 
