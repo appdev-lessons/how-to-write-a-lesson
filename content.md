@@ -580,7 +580,6 @@ To add a Ruby question to your lesson, use the following markdown syntax,
     pp z
     ```
     {: .codeblock #bear title="Runnable Ruby" points="1"}
-    {: copyable }
 
 After the user executes the code at least once, they are awarded all the points.
 
