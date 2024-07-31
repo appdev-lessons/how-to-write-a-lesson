@@ -297,11 +297,19 @@ When rendered in the lesson, that will produce:
 
 As soon as there are at least four answers to that question in the lesson, a time-taken badge will appear next to the lesson on the User-facing course page:
 
+---
+
 ![Time taken badge](/assets/time-taken-badge.png)
 
-and the totals will be tallied on the Author-facing course configuration page:
+---
+
+And the totals will be tallied on the Author-facing course configuration page:
+
+---
 
 ![Time taken author tally](/assets/time-taken-author-tally.png)
+
+---
 
 ### Copyable codeblocks
 
