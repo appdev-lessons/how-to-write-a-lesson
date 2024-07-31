@@ -522,9 +522,9 @@ A free text number question type allows the respondent to enter any number or de
 ```
 - What does 2+2 evaluate to?
 - 4
-	- That's right!
+  - That's right!
 - any
-	- Not quite.
+  - Not quite.
 {: .free_text_number #two_plus_two title="Two plus two" points="1" answer="1" }
 ```
 {: copyable }
@@ -581,7 +581,6 @@ To add a Ruby question to your lesson, use the following markdown syntax,
     pp z
     ```
     {: .codeblock #bear title="Runnable Ruby" points="1"}
-    {: copyable }
 
 After the user executes the code at least once, they are awarded all the points.
 
