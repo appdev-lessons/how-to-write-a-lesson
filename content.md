@@ -276,7 +276,34 @@ graph TD
 
 We have a number of markdown features specific to Learn that are important for authors to familiarize themselves with.
 
-## Copyable codeblocks
+### Time taken question
+
+To collect _average_ user completion times, which are calculated as the mean of the 25th to 75th percentile to avoid outliers, **copy and paste this exact question into the bottom of your lesson**:
+
+```
+---
+
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+```
+{: copyable }
+
+When rendered in the lesson, that will produce:
+
+---
+
+- Approximately how long (in minutes) did this lesson take you to complete?
+{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+
+As soon as there are at least four answers to that question in the lesson, a time-taken badge will appear next to the lesson on the User-facing course page:
+
+![Time taken badge](/assets/time-taken-badge.png)
+
+And the totals will be tallied on the Author-facing course configuration page:
+
+![Time taken author tally](/assets/time-taken-author-tally.png)
+
+### Copyable codeblocks
 
 In general, our mantra is "type don't copy-paste!". However, there are times when an author might want a copyable codeblock for e.g. API keys, boilerplate HTML, etc. 
 
@@ -295,7 +322,7 @@ copy instead of type!
 {: copyable }
 
 
-## Codeblock line and column highlighting
+### Codeblock line and column highlighting
 
 You add the highlight options after the language tag in a codeblock within brackets.
 
@@ -340,7 +367,7 @@ Produces:
   <div class="card">
 ```
 
-## Quiz questions
+### Quiz questions
 
 A quiz question is built like so:
 
@@ -371,7 +398,7 @@ The options contained in the `{: }` tags on a new line directly below the questi
 - `answer`
   - Indicates the index of the correct answer in the list of options (indexing begins at 1 with the first option.
 
-### choose_all
+#### choose_all
 
 A choose all question type is a multiple choice question where the user can select multiple answers. The user can select the answer by clicking on the checkbox next to the answer.
 
@@ -405,7 +432,7 @@ The user will receive partial points for each correct answer they select. The us
     - This is not correct because of xyz reason
 {: .choose_all #zebra title="The choose_all question type" points="2" answer="[2, 3]" }
 
-### choose_best
+#### choose_best
 
 A choose best question type is a multiple choice question where the user can select only one answer. The user can select the answer by clicking on the radio button next to the answer.
 
@@ -447,7 +474,7 @@ Once the user selects the one correct answer, they will receive all the points.
 
 - "optional answer": A `choose_all` or `choose_best` question must have a correct answer selected. It is not optional. If you leave out the answer attribute then any answer a user selects will be marked as incorrect.
 
-### free_text
+#### free_text
 
 A free text question type allows the respondent to enter any text they wish.
 
@@ -471,21 +498,27 @@ A user can type in the exact or a partial match for the correct answer. For exam
   - Correct! The `posts#new` action is responsible for displaying a blank form to be filled out.
 {: .free_text #elephant title="The free_text question type" points="1" answer="2" }
 
-### free_text_number
+#### free_text_number
 
-A free text number question type allows the respondent to enter any number or decimal they wish. This is usually used to collect user completion times.
-
-To add a free text number question to your lesson, use the following markdown syntax,
+A free text number question type allows the respondent to enter any number or decimal they wish. To add a free text number question to your lesson, use the following markdown syntax,
 
 ```
-- Approximately how long (in minutes) did this lesson take you to complete?
-{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+- What does 2+2 evaluate to?
+- 4
+	- That's right!
+- any
+	- Not quite.
+{: .free_text_number #two_plus_two title="Two plus two" points="1" answer="1" }
 ```
 
 If options are given for the correct answer, a user can type in only the exact match of the answer. For example, if the answer is 5, the user can type in 5, 5.0, 5.00, 5.000, etc. but not 5.1, 5.01, 5.001, etc.
 
-- Approximately how long (in minutes) did this lesson take you to complete?
-{: .free_text_number #time_taken title="Time taken" points="1" answer="any" }
+- What does 2+2 evaluate to?
+- 4
+	- That's right!
+- any
+	- Not quite.
+{: .free_text_number #two_plus_two title="Two plus two" points="1" answer="1" }
 
 **Special Cases for free_text and free_text_number:**
 
@@ -510,11 +543,11 @@ If options are given for the correct answer, a user can type in only the exact m
 
   `{: .free_text #elephant title="The free_text question type" points="1" }`
 
-## Runnable and graded codeblocks
+### Runnable and graded codeblocks
 
 An author can insert runnable or graded codeblocks into the lesson.
 
-### Runnable Ruby (codeblock)
+#### Runnable Ruby (codeblock)
 
 A Ruby runnable question type allows the user to modify and execute Ruby code.
 
@@ -551,7 +584,7 @@ pp z
   - Example: `setup_code="1"`
   - Example: `setup_code="1-4"`
 
-### Graded Ruby (codeblock + codeblock-test)
+#### Graded Ruby (codeblock + codeblock-test)
 
 Each Ruby question can have multiple tests. When a student clicks on the "Run" button for a test, the test executes, and an output and summary are displayed to the student. The output represents the result of each individual test, indicating whether it passed or failed. The summary provides an overview of the test results, including the number of tests that passed.
 
@@ -595,14 +628,14 @@ end
 ```
 {: .codeblock-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
 
-#### More examples of graded code blocks
+##### More examples of graded code blocks
 
 The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
 
 - [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
 - [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
 
-### Runnable HTML (codeblock)
+#### Runnable HTML (codeblock)
 
 An HTML runnable question type allows the user to modify and execute HTML code.
 
@@ -624,7 +657,7 @@ To add an HTML question to your lesson, just specify the code type in the beginn
 
 We do not yet support grading via connected tests on runnable HTML code blocks.
 
-## LTI button
+### LTI button
 
 An LTI launch button can also be inserted into a lesson, allowing connections to `rake grade` projects:
 
