@@ -428,7 +428,7 @@ To add a choose all question to your lesson, use the following markdown syntax,
   - Also correct because of abc reason
 - Third option (correct)
   - That's right! Because of xyz reason
-{: .choose_all #zebra points="2" answer="[2, 3]" }
+{: .choose_all #zebra title="The choose_all question type" points="2" answer="[2, 3]" }
 ```
 {: copyable }
 
