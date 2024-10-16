@@ -280,17 +280,18 @@ graph TD
 Authors can write [LaTeX math equations](https://tilburgsciencehub.com/topics/research-skills/templates-dynamic-content/templates/amsmath-latex-cheatsheet/) by fencing inline or block expressions with two dollar signs, `$$`. For example:
 
 ```
-$$x + y = 5$$
+$$\Large x + y = 5$$
 ```
 
 Produces:
 
-$$x + y = 5$$
+$$\Large x + y = 5$$
 
 or
 
 ```
 $$
+\Large
 \begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
   = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
@@ -311,6 +312,7 @@ $$
 Produces:
 
 $$
+\Large
 \begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
   = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
