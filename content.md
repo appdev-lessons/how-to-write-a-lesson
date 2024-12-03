@@ -446,7 +446,7 @@ A quiz question is built like so:
   - Not quite. (Copy to show when second option is selected.)
 - Third option.
   - Not quite. (Copy to show when third option is selected.)
-{: .question_type #unique_identifier title="Some title" points="1" answer="1" }
+{: .question_type #unique_identifier title="Some title" points="1" answer="1" needs_approval="false" }
 ```
 {: copyable }
 
@@ -465,6 +465,30 @@ The options contained in the `{: }` tags on a new line directly below the questi
   - Number of points the question is worth.
 - `answer`
   - Indicates the index of the correct answer in the list of options (indexing begins at 1 with the first option.
+- `needs_approval`
+  - If set to `true`, the student will not receive points until an instructor "approves" the answer on the instructor dashboard for the course.
+
+#### `needs_approval` option
+
+The `needs_approval` option listed above is a boolean that defaults to `false`. If set to `true`, the student will not receive points until an instructor "approves" the answer on the instructor dashboard for the course.
+
+This option is most useful for `.free_text` questions ([described below](#free_text){: target="_self"}), where e.g. a submitted URL needs to be viewed by an instructor to determine if the answer is correct. This option should only be used for lessons contained in a course, and not standalone lessons. When using this option, **it is advised to lower passing scores on the lesson to less than 100% (the default passing score of 80% is a good value)** so that students are not blocked from further progress while awaiting approval.
+
+Once this option is added to a question, the student will see this message when they submit a correct answer:
+
+---
+
+![Needs approval message](/assets/needs-approval-student-view.png)
+{: .bleed-full}
+
+---
+
+And they will not receive the points right away.
+
+When an instructor of the course navigates to the "Instructor dashboard" > "Lessons" > "Lesson title" page, they will see the ability to "approve" the submission, which will then award the points to the student:
+
+![Needs approval instructor view](/assets/needs-approval-instructor-view.png)
+{: .bleed-full}
 
 #### choose_all
 
