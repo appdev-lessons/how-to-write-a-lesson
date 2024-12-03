@@ -479,7 +479,6 @@ Once this option is added to a question, the student will see this message when 
 ---
 
 ![Needs approval message](/assets/needs-approval-student-view.png)
-{: .bleed-full}
 
 ---
 
@@ -488,7 +487,6 @@ And they will not receive the points right away.
 When an instructor of the course navigates to the "Instructor dashboard" > "Lessons" > "Lesson title" page, they will see the ability to "approve" the submission, which will then award the points to the student:
 
 ![Needs approval instructor view](/assets/needs-approval-instructor-view.png)
-{: .bleed-full}
 
 #### choose_all
 
