@@ -491,18 +491,22 @@ When an instructor of the course navigates to the "Instructor dashboard" > "Less
 Here is an example of a `.free_text` question that uses the `needs_approval` option:
 
 ```
-- Enter the URL of your GitHub project repository:
-- github.com
+- Enter the URL of your GitHub project repository (e.g. `https://github.com/your-username/your-repo`):
+- https://github.com
   - Thanks for your submission.
+- any
+  - Not quite, make sure you submit a URL like `https://github.com/your-username/your-repo`.
 {: .free_text #otter title="The needs_approval question type" points="1" answer="1" needs_approval="true" }
 ```
 {: copyable }
 
 Which renders as:
 
-- Enter the URL of your GitHub project repository:
-- github.com
+- Enter the URL of your GitHub project repository (e.g. `https://github.com/your-username/your-repo`):
+- https://github.com
   - Thanks for your submission.
+- any
+  - Not quite, make sure you submit a URL like `https://github.com/your-username/your-repo`.
 {: .free_text #otter title="The needs_approval question type" points="1" answer="1" needs_approval="true" }
 
 #### choose_all
