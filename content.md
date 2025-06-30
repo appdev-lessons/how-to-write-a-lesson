@@ -387,6 +387,23 @@ copy instead of type!
 {: copyable }
 
 
+### Codeblock titles
+
+An author can title a static codeblock, typically with the filename of the code in question, with this syntax:
+
+    ```ruby
+    get("/movies", { :controller => "movies", :action => "index" })
+    ```
+    {: filename="config/routes.rb" }
+
+That produces:
+
+```ruby
+get("/movies", { :controller => "movies", :action => "index" })
+```
+{: filename="config/routes.rb" }
+
+
 ### Codeblock line and column highlighting
 
 You add the highlight options after the language tag in a codeblock within brackets.
