@@ -725,44 +725,48 @@ Here's an example,
     ```ruby
     pp "change me :)"
     ```
-    {: .codeblock #graded_code_block title="First graded code block"}
+    {: .codeblock #graded_codeblock title="First graded code block"}
 
     ```ruby
     describe "First graded code block" do
       it "should print 'Hello, world!'" do
-        path = "/tmp/code.rb"
-        expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
+        output = run_codeblock
+        expect(output).to match("Hello, world!")
       end
     end
     ```
-    {: .codeblock-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+    {: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded code block should print 'Hello, world!'" points="1"}
 
 Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
 
 It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded code block should print 'Hello, world!'"`.
 
-Note the key attribute of the `codeblock-test`: `for="graded_code_block"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_code_block` / `for="graded_code_block"`.
+Note the key attribute of the `codeblock-test`: `for="graded_codeblock"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_codeblock` / `for="graded_codeblock"`.
 
 Each test is associated with a specific Ruby question using the Ruby question ID parameter. This association allows the system to identify the related tests for a particular question and calculate the score received by the student based on the pass percentage.
 
 ```ruby
 pp "change me :)"
 ```
-{: .codeblock #graded_code_block title="First graded code block"}
+{: .codeblock #graded_codeblock title="First graded code block"}
 
 ```ruby
 describe "First graded code block" do
   it "should print 'Hello, world!'" do
-    path = "/tmp/code.rb"
-    expect { require_relative(path) }.to output(/Hello, world!/).to_stdout, "Expected output to be 'Hello, world!', but it was something else."
+    output = run_codeblock
+    expect(output).to match("Hello, world!")
   end
 end
 ```
-{: .codeblock-test #graded_code_block_test_1 for="graded_code_block" title="First graded code block should print 'Hello, world!'" points="1"}
+{: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded code block should print 'Hello, world!'" points="1"}
 
-##### More examples of graded code blocks
+#### Our guide to graded codeblocks
 
-The source code for a few lessons with extensive graded code blocks are helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
+You can read _much_ more about writing graded codeblocks in our guide: [_How to write Ruby codeblock tests_](https://learn.firstdraft.com/lessons/684-how-to-write-ruby-codeblock-tests).
+
+You should review those notes before you begin writing tests for the first time.
+
+The source code for a few lessons with extensive graded code blocks are also helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
 
 - [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
 - [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
