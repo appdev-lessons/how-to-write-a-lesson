@@ -725,7 +725,7 @@ Here's an example,
     ```ruby
     pp "change me :)"
     ```
-    {: .codeblock #graded_codeblock title="First graded code block"}
+    {: .codeblock #graded_codeblock title="First graded code block" points="1"}
 
     ```ruby
     describe "First graded code block" do
@@ -748,7 +748,7 @@ Each test is associated with a specific Ruby question using the Ruby question ID
 ```ruby
 pp "change me :)"
 ```
-{: .codeblock #graded_codeblock title="First graded code block"}
+{: .codeblock #graded_codeblock title="First graded code block" points="1"}
 
 ```ruby
 describe "First graded code block" do
