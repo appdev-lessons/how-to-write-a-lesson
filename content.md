@@ -307,21 +307,35 @@ For instance, a pure LaTeX line like this:
 The \textbf{fundamental theorem of calculus} establishes a \emph{crucial} ...
 ```
 
-will render as plaintext on our platform, until we add our required `$$` delimiters:
+will render as plaintext on our platform:
+
+---
+
+The \textbf{fundamental theorem of calculus} establishes a \emph{crucial} ...
+
+---
+
+, until we add our required `$$` delimiters:
 
 ```
 The $$\textbf{fundamental theorem of calculus}$$ establishes a $$\emph{crucial}$$ ...
 ```
 
-which only partially renders correctly:
+, which only partially renders:
+
+---
 
 The $$\textbf{fundamental theorem of calculus}$$ establishes a $$\emph{crucial}$$ ...
+
+---
 
 Instead, it's recommended to use standard Markdown syntax for proper rendering:
 
 ```
 The **fundamental theorem of calculus** establishes a _crucial_ ...
 ```
+
+---
 
 The **fundamental theorem of calculus** establishes a _crucial_ ...
 
