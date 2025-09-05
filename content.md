@@ -341,7 +341,7 @@ The **fundamental theorem of calculus** establishes a _crucial_ ...
 
 ---
 
-At this time, we do not plan to support arbitrary LaTeX beyond math, like in the complex example below.
+At this time, we do not plan to support arbitrary LaTeX beyond math.
 
 #### Complete LaTeX math example
 
