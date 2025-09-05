@@ -283,14 +283,58 @@ Authors can write [LaTeX math equations](https://tilburgsciencehub.com/topics/re
 $$\Large x + y = 5$$
 ```
 
-Produces:
-
-$$\Large x + y = 5$$
-
 or
 
 ```
 $$
+\Large x + y = 5
+$$
+```
+
+Produces:
+
+$$\Large x + y = 5$$
+
+#### Non-math LaTeX support
+
+Note that the `$$` double delimiter is not the standard single `$` delimiter for math used in vanilla LaTeX documents. We require the double `$$` wrapping to render LaTeX-style math on our platform.
+
+By extension, arbitrary LaTeX elements will not render properly here, as we do not support a full LaTeX renderer like [Pandoc](https://pandoc.org/). Rather, our implementation relies on [KaTeX](https://katex.org/), and is focused on math rendering.
+
+For instance, a pure LaTeX line like this:
+
+```
+The \textbf{fundamental theorem of calculus} establishes a \emph{crucial} ...
+```
+
+will render as plaintext on our platform, until we add our required `$$` delimiters:
+
+```
+The $$\textbf{fundamental theorem of calculus}$$ establishes a $$\emph{crucial}$$ ...
+```
+
+which only partially renders correctly:
+
+The $$\textbf{fundamental theorem of calculus}$$ establishes a $$\emph{crucial}$$ ...
+
+Instead, it's recommended to use standard Markdown syntax for proper rendering:
+
+```
+The **fundamental theorem of calculus** establishes a _crucial_ ...
+```
+
+The **fundamental theorem of calculus** establishes a _crucial_ ...
+
+---
+
+At this time, we do not plan to support arbitrary LaTeX beyond math, like in the complex example below.
+
+#### Complete LaTeX math example
+
+For a complex example of the kinds of math you can render in a lesson:
+
+```
+$$
 \Large
 \begin{aligned}
   & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
@@ -328,6 +372,8 @@ $$
     \end{array} \right)
 \end{aligned}
 $$
+
+In general, if you take an existing LaTeX equation from your notes and add it to a lesson, wrapped in a `$$` above and below, then you can expect the equation to render as expected. For non-math LaTeX elements, e.g. for styling paragraph elements or formatting, you will need to drop down to Markdown or HTML syntax.
 
 ## Learn-flavored markdown extensions
 
