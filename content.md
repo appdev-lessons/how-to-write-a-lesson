@@ -739,7 +739,7 @@ If options are given for the correct answer, a user can type in only the exact m
 
 An author can insert runnable or graded codeblocks into the lesson.
 
-#### Runnable Ruby (codeblock)
+#### Runnable Ruby codeblocks
 
 A Ruby runnable question type allows the user to modify and execute Ruby code.
 
@@ -776,7 +776,7 @@ pp z
   - Example: `setup_code="1"`
   - Example: `setup_code="1-4"`
 
-#### Graded Ruby (codeblock + codeblock-test)
+#### Graded Ruby codeblocks + tests
 
 Each Ruby question can have multiple tests. When a student clicks on the "Run" button for a test, the test executes, and an output and summary are displayed to the student. The output represents the result of each individual test, indicating whether it passed or failed. The summary provides an overview of the test results, including the number of tests that passed.
 
