@@ -184,7 +184,7 @@ In order to be sized properly, content of list items needs to be within a contai
 
   Add new lines and indent one level.
 
-- Code block within li:
+- Codeblock within li:
 
   ```ruby
   class Person
@@ -537,7 +537,7 @@ The options contained in the `{: }` tags on a new line directly below the questi
 - `title`
   - Used by the user to identify the question in the progress table. 
   - It is not used to identify the question in the database. It does not have to be unique.
-  - For runnable code blocks, this title is also used as a header to the code editor displayed to the user.
+  - For runnable codeblocks, this title is also used as a header to the code editor displayed to the user.
 - `points`
   - Number of points the question is worth.
 - `answer`
@@ -785,21 +785,21 @@ Here's an example,
     ```ruby
     pp "change me :)"
     ```
-    {: .codeblock #graded_codeblock title="First graded code block" points="1"}
+    {: .codeblock #graded_codeblock title="First graded codeblock" points="1"}
 
     ```ruby
-    describe "First graded code block" do
+    describe "First graded codeblock" do
       it "should print 'Hello, world!'" do
         output = run_codeblock
         expect(output).to match("Hello, world!")
       end
     end
     ```
-    {: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded code block should print 'Hello, world!'" points="1"}
+    {: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded codeblock should print 'Hello, world!'" points="1"}
 
 Notice that the first block has no points associated with it. Total points for a graded Ruby question are calculated by summing the individual question test points. 
 
-It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded code block should print 'Hello, world!'"`.
+It is advisable to give the test a `describe` line using the copy from the runnable code `title`, and then use the `it` line's copy to form the `title` for the test; here: `"First graded codeblock should print 'Hello, world!'"`.
 
 Note the key attribute of the `codeblock-test`: `for="graded_codeblock"`. This `for` attribute **must** match the `#unique_identifier` attribute of the question associated with it, here that is `#graded_codeblock` / `for="graded_codeblock"`.
 
@@ -808,34 +808,34 @@ Each test is associated with a specific Ruby question using the Ruby question ID
 ```ruby
 pp "change me :)"
 ```
-{: .codeblock #graded_codeblock title="First graded code block" points="1"}
+{: .codeblock #graded_codeblock title="First graded codeblock" points="1"}
 
 ```ruby
-describe "First graded code block" do
+describe "First graded codeblock" do
   it "should print 'Hello, world!'" do
     output = run_codeblock
     expect(output).to match("Hello, world!")
   end
 end
 ```
-{: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded code block should print 'Hello, world!'" points="1"}
+{: .codeblock-test #graded_codeblock_test_1 for="graded_codeblock" title="First graded codeblock should print 'Hello, world!'" points="1"}
 
-#### Our guide to graded codeblocks
+#### Our guide to graded Ruby codeblocks
 
 You can read _much_ more about writing graded codeblocks in our guide: [_How to write Ruby codeblock tests_](https://learn.firstdraft.com/lessons/684-how-to-write-ruby-codeblock-tests).
 
 You should review those notes before you begin writing tests for the first time.
 
-The source code for a few lessons with extensive graded code blocks are also helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
+The source code for a few lessons with extensive graded codeblocks are also helpful for reference (search the source code for `.codeblock-test` to find the relevant examples):
 
 - [Ruby Intro: Each](https://raw.githubusercontent.com/appdev-lessons/ruby-intro-each/main/content.md)
 - [Ruby Gym: Think Fast](https://raw.githubusercontent.com/appdev-lessons/ruby-gym-think-fast/main/content.md)
 
-#### Runnable HTML (codeblock)
+#### Runnable HTML codeblocks
 
 An HTML runnable question type allows the user to modify and execute HTML code.
 
-To add an HTML question to your lesson, just specify the code type in the beginning of the code block,
+To add an HTML question to your lesson, just specify the code type in the beginning of the codeblock,
 
     ```html
     <h1>Hi</h1>
@@ -851,7 +851,87 @@ To add an HTML question to your lesson, just specify the code type in the beginn
 ```
 {: .codeblock #salmon title="Runnable HTML" points="1"}
 
-We do not yet support grading via connected tests on runnable HTML code blocks.
+We do not yet support grading via connected tests on runnable HTML codeblocks.
+
+#### Runnable HTTP Hurl codeblocks
+
+A [Hurl](https://hurl.dev/) codeblock allows the user to modify and execute HTTP requests, e.g.:
+
+    ```hurl
+    POST https://api.artic.edu/api/v1/artworks/search
+    Content-Type: application/json
+
+    {
+        "q": "cats",
+        "query": {
+            "term": {
+                "is_public_domain": true
+            }
+        }
+    }
+    ```
+    {: .codeblock #runnable_hurl title="Runnable Hurl" points="1"}
+
+```hurl
+POST https://api.artic.edu/api/v1/artworks/search
+Content-Type: application/json
+
+{
+    "q": "cats",
+    "query": {
+        "term": {
+            "is_public_domain": true
+        }
+    }
+}
+```
+{: .codeblock #runnable_hurl title="Runnable Hurl" points="1"}
+
+We do not yet support grading via connected tests on runnable Hurl codeblocks.
+
+#### Runnable Python codeblocks
+
+A Python codeblock allows the user to modify and execute Python code, e.g.:
+
+    ```python
+    import numpy as np
+
+    array = np.array([[1, 2, 3], [4, 5, 6]])
+    column_sums = np.sum(array, axis=0)
+
+    print(f"Array:\n{array}")
+    print(f"Sum along columns: {column_sums}")
+    ```
+    {: .codeblock #runnable_python_numpy title="Runnable Python (NumPy)" points="1"}
+
+ ```python
+import numpy as np
+
+array = np.array([[1, 2, 3], [4, 5, 6]])
+column_sums = np.sum(array, axis=0)
+
+print(f"Array:\n{array}")
+print(f"Sum along columns: {column_sums}")
+```
+{: .codeblock #runnable_python_numpy title="Runnable Python (NumPy)" points="1"}
+
+The following packages are currently available in these Python codeblocks:
+
+```
+# Core data analysis and scientific computing
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.16.2
+
+# Machine learning and statistics
+scikit-learn==1.7.2
+statsmodels==0.14.5
+
+# Web-dev
+requests==2.32.5
+```
+
+We do not yet support grading via connected tests on runnable Python codeblocks.
 
 ### LTI button
 
