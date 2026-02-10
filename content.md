@@ -1,5 +1,10 @@
 # How to write a lesson in learn.firstdraft.com
 
+<div class="alert alert-danger">
+	
+This lesson is deprecated in favor of our [Platform Overview](/lessons/799-platfom-overview). Please visit that guide.
+</div>
+
 ## Create the lesson
 
 Sign in and visit the author lessons index, [learn.firstdraft.com/authors/lessons](https://learn.firstdraft.com/authors/lessons), and click "New lesson". You can either fill in a "title" and "content" directly in the markdown GUI interface, or "Connect GitHub" to add the URL of a lesson on GitHub in our pre-defined format, which is detailed below.
