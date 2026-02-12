@@ -1,4 +1,4 @@
-# How to write a lesson in learn.firstdraft.com
+# How to write a lesson
 
 <div class="alert alert-danger">
 	
