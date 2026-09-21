@@ -215,7 +215,7 @@ In order to be sized properly, content of list items needs to be within a contai
 <aside>
 This aside is next to a `ul`. How does it look?
 
-![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+![file](assets/image-1674882462430.jpg)
 
 1. It has a list item inside it.
 
@@ -223,7 +223,7 @@ This aside is next to a `ul`. How does it look?
 
     I'm indented content!
 
-1. ![file](https://res.cloudinary.com/dmxgp9oq2/image/upload/v1674882464/image-1674882462430.jpeg.jpg)
+1. ![file](assets/image-1674882462430.jpg)
 
 ```ruby
 class Person
